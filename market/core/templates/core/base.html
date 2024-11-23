@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Django Market">
+    <meta name="keywords" content="Django,Python">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>
+      {% block title %}
+      {% endblock title %}
+      | Django Market
+    </title>
+  </head>
+  <body>
+    <div class="px-6 py-6">
+      {% block content %}
+      {% endblock content %}
+    </div>
+  </body>
+</html>
