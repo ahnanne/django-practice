@@ -13,9 +13,53 @@
     </title>
   </head>
   <body>
+    <nav class="px-6 py-6 flex justify-between items-center border-b border-gray-200">
+      <a href="{% url 'index' %}" class="text-xl font-semibold">DjangoMarket</a>
+      <div class="flex justify-between">
+        <ul class="flex justify-between items-center mr-6">
+          <li class="mr-3">
+            <a href="{% url 'index' %}" class="text-lg font-semibold">menu1</a>
+          </li>
+          <li>
+            <a href="{% url 'index' %}" class="text-lg font-semibold">menu2</a>
+          </li>
+        </ul>
+        <div class="flex justify-between">
+          <a href="{% url 'index' %}"
+             class="text-lg font-semibold px-6 py-3 bg-teal-500 text-white rounded-xl mr-3">Sign Up</a>
+          <a href="{% url 'index' %}"
+             class="text-lg font-semibold px-6 py-3 bg-teal-500 text-white rounded-xl">Log In</a>
+        </div>
+      </div>
+    </nav>
     <div class="px-6 py-6">
       {% block content %}
       {% endblock content %}
     </div>
+    <footer class="px-6 py-6 flex justify-between bg-gray-800">
+      <div class="w-2/3 pr-10">
+        <h3 class="mb-5 font-semibold text-gray-400">About</h3>
+        <p class="text-lg text-gray-500">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque egestas commodo tellus, sed condimentum arcu consectetur vel.
+        </p>
+      </div>
+      <div class="w-1/3">
+        <h3 class="mb-5 font-semibold text-gray-400">Menu</h3>
+        <ul class="space-y-2">
+          <li>
+            <a href="#" class="text-lg text-teal-500">About</a>
+          </li>
+          <li>
+            <a href="{% url 'contact' %}" class="text-lg text-teal-500">Contact</a>
+          </li>
+          <li>
+            <a href="#" class="text-lg text-teal-500">Privacy policy</a>
+          </li>
+          <li>
+            <a href="#" class="text-lg text-teal-500">Term of use</a>
+          </li>
+        </ul>
+      </div>
+    </footer>
   </body>
 </html>
