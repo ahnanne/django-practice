@@ -11,5 +11,47 @@
            width="300"
            alt="" />
     </div>
+    <div class="col-span-2 p-6 bg-gray-100 rounded-xl">
+      <h1 class="mb-6 text-3xl">{{ item.name }}</h1>
+      <p class="text-gray-500">
+        <strong>Price:</strong>{{ item.price }}
+      </p>
+      <p class="text-gray-500">
+        <strong>Seller:</strong>{{ item.created_by }}
+      </p>
+      {% if item.description %}
+        <p class="text-gray-700">
+          <strong class="text-gray-500">Description</strong>
+          <br>
+          {{ item.description }}
+        </p>
+      {% endif %}
+      <a href="#"
+         class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">
+        Contact seller
+      </a>
+    </div>
+  </div>
+  <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
+    <h2 class="mb-12 text-2xl text-center">Items</h2>
+    <div class="grid grid-cols-3 gap-3">
+      {% for item in related_items %}
+        <div>
+          <a href="{% url 'item:detail' item.id %}">
+            <div>
+              <img src="{{ item.image.url }}"
+                   class="rounded-t-xl"
+                   alt=""
+                   height="auto"
+                   width="200" />
+            </div>
+            <div class="p-6 rounded-b-xl">
+              <h2 class="text-2xl">{{ item.title }}</h2>
+              <p class="text-gray-500">Price: {{ item.price }}</p>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
   </div>
 {% endblock content %}
