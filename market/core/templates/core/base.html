@@ -14,20 +14,20 @@
   </head>
   <body>
     <nav class="px-6 py-6 flex justify-between items-center border-b border-gray-200">
-      <a href="{% url 'index' %}" class="text-xl font-semibold">DjangoMarket</a>
+      <a href="{% url 'core:index' %}" class="text-xl font-semibold">DjangoMarket</a>
       <div class="flex justify-between">
         <ul class="flex justify-between items-center mr-6">
           <li class="mr-3">
-            <a href="{% url 'index' %}" class="text-lg font-semibold">menu1</a>
+            <a href="#" class="text-lg font-semibold">menu1</a>
           </li>
           <li>
-            <a href="{% url 'index' %}" class="text-lg font-semibold">menu2</a>
+            <a href="#" class="text-lg font-semibold">menu2</a>
           </li>
         </ul>
         <div class="flex justify-between">
-          <a href="{% url 'index' %}"
+          <a href="#"
              class="text-lg font-semibold px-6 py-3 bg-teal-500 text-white rounded-xl mr-3">Sign Up</a>
-          <a href="{% url 'index' %}"
+          <a href="#"
              class="text-lg font-semibold px-6 py-3 bg-teal-500 text-white rounded-xl">Log In</a>
         </div>
       </div>
@@ -50,7 +50,7 @@
             <a href="#" class="text-lg text-teal-500">About</a>
           </li>
           <li>
-            <a href="{% url 'contact' %}" class="text-lg text-teal-500">Contact</a>
+            <a href="{% url 'core:contact' %}" class="text-lg text-teal-500">Contact</a>
           </li>
           <li>
             <a href="#" class="text-lg text-teal-500">Privacy policy</a>
