@@ -3,3 +3,6 @@ disable=
     C0114,  # Missing module docstring
     C0115,
     C0116   # Missing function or method docstring
+
+[DESIGN]
+max-parents=10
