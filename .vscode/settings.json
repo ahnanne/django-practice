@@ -1,3 +1,6 @@
 {
-  "pylint.args": ["--django-settings-module=django-practice.settings"]
+  "pylint.args": [
+    "--load-plugins=pylint_django",
+    "--django-settings-module=market.settings"
+  ]
 }
