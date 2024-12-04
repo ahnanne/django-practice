@@ -25,13 +25,20 @@
           </li>
         </ul>
         <div class="flex justify-between">
-          <a href="#"
+          <a href="{% url 'core:signup' %}"
              class="text-lg font-semibold px-6 py-3 bg-teal-500 text-white rounded-xl mr-3">Sign Up</a>
           <a href="#"
              class="text-lg font-semibold px-6 py-3 bg-teal-500 text-white rounded-xl">Log In</a>
         </div>
       </div>
     </nav>
+    {% if messages %}
+      <ul class="w-full flex justify-center">
+        {% for message in messages %}
+          <li class="w-11/12 py-3 px-6 my-10 rounded-md bg-teal-50 border-teal-500 border">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
     <div class="px-6 py-6">
       {% block content %}
       {% endblock content %}
