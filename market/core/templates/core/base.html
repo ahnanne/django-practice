@@ -24,12 +24,21 @@
             <a href="#" class="text-lg font-semibold">menu2</a>
           </li>
         </ul>
-        <div class="flex justify-between">
-          <a href="{% url 'core:signup' %}"
-             class="text-lg font-semibold px-6 py-3 bg-teal-500 text-white rounded-xl mr-3">Sign Up</a>
-          <a href="{% url 'core:login' %}"
-             class="text-lg font-semibold px-6 py-3 bg-teal-500 text-white rounded-xl">Log In</a>
-        </div>
+        {% if request.user.is_authenticated %}
+          <div class="flex justify-between">
+            <a href="#"
+               class="text-lg font-semibold px-6 py-3 bg-teal-500 text-white rounded-xl mr-3">Inbox</a>
+            <a href="#"
+               class="text-lg font-semibold px-6 py-3 bg-teal-500 text-white rounded-xl">Dashboard</a>
+          </div>
+        {% else %}
+          <div class="flex justify-between">
+            <a href="{% url 'core:signup' %}"
+               class="text-lg font-semibold px-6 py-3 bg-teal-500 text-white rounded-xl mr-3">Sign Up</a>
+            <a href="{% url 'core:login' %}"
+               class="text-lg font-semibold px-6 py-3 bg-teal-500 text-white rounded-xl">Log In</a>
+          </div>
+        {% endif %}
       </div>
     </nav>
     {% if messages %}
