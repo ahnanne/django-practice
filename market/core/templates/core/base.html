@@ -18,10 +18,10 @@
       <div class="flex justify-between">
         <ul class="flex justify-between items-center mr-6">
           <li class="mr-3">
-            <a href="#" class="text-lg font-semibold">menu1</a>
+            <a href="{% url "item:new" %}" class="text-lg font-semibold">New item</a>
           </li>
           <li>
-            <a href="#" class="text-lg font-semibold">menu2</a>
+            <a href="#" class="text-lg font-semibold">Browse</a>
           </li>
         </ul>
         {% if request.user.is_authenticated %}

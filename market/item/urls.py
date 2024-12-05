@@ -6,8 +6,9 @@ app_name = 'item'  # name space for this app
 
 urlpatterns = [
     path(
-      '<int:pk>/',  # integer, primary key
-      views.detail,
-      name='detail'
-    )
+        '<int:pk>/',  # integer, primary key
+        views.detail,
+        name='detail'
+    ),
+    path('new/', views.new, name='new')
 ]

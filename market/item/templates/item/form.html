@@ -1,0 +1,45 @@
+{% extends "core/base.html" %}
+{% block title %}
+  Add new item
+{% endblock title %}
+{% block content %}
+  <div class="w-1/2 my-6 mx-auto p-6 bg-gray-100 rounded-xl">
+    <h1 class="mb-6 text-3xl text-center">Add new item</h1>
+    <form method="post" action="{% url 'item:new' %}">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label class="inline-block mb-2">Category</label>
+        <br>
+        {{ form.category }}
+      </div>
+      <div class="mb-3">
+        <label class="inline-block mb-2">Name</label>
+        <br>
+        {{ form.name }}
+      </div>
+      <div class="mb-3">
+        <label class="inline-block mb-2">Description</label>
+        <br>
+        {{ form.description }}
+      </div>
+      <div class="mb-3">
+        <label class="inline-block mb-2">Price</label>
+        <br>
+        {{ form.price }}
+      </div>
+      <div class="mb-3">
+        <label class="inline-block mb-2">Image</label>
+        <br>
+        {{ form.image }}
+      </div>
+      {% if form.errors or form.non_field_errors %}
+        <div class="mb-3 p-6 bg-red-100 rounded-xl">
+          {% for field in form %}{{ field.errors }}{% endfor %}
+          {{ form.non_field_errors }}
+        </div>
+      {% endif %}
+      <button type="submit"
+              class="py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-md">Save</button>
+    </form>
+  </div>
+{% endblock content %}
