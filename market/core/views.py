@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from utils.decorators import log_headers
 
 from item.models import Category, Item
 from .forms import SignupForm, LoginForm
 
 
+@log_headers
 def index(request):
-    print(messages.get_messages(request))
     items = Item.objects.filter(is_sold=False)[0:6]
     categories = Category.objects.all()
 
