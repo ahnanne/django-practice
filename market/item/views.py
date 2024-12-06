@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from utils.decorators import log_files
 
 from .models import Item
 from .forms import NewItemForm
@@ -19,8 +20,20 @@ def detail(request, pk):
 
 
 @login_required
+@log_files
 def new(request):
-    form = NewItemForm()
+    if request.method == 'POST':
+        form = NewItemForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            # create an object but not save it before adding 'created_by' field
+            item = form.save(commit=False)
+            item.created_by = request.user
+            item.save()  # now save it
+
+            return redirect('item:detail', pk=item.id)
+    else:
+        form = NewItemForm()
 
     return render(request, 'item/form.html', {
         'form': form
