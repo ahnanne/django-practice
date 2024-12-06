@@ -3,11 +3,11 @@ from rich.console import Console
 from rich.theme import Theme
 from rich.table import Table
 
-monokai_theme = Theme({
+custom_theme = Theme({
     "header": "bold magenta",
 })
 
-console = Console(theme=monokai_theme)
+console = Console(theme=custom_theme)
 
 
 def log_headers(view_func):
