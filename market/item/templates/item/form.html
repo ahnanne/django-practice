@@ -1,19 +1,21 @@
 {% extends "core/base.html" %}
 {% block title %}
-  Add new item
+  {{ title }}
 {% endblock title %}
 {% block content %}
   <div class="w-4/5 my-6 mx-auto p-6 bg-gray-100 rounded-xl">
-    <h1 class="mb-6 text-3xl text-center">Add new item</h1>
+    <h1 class="mb-6 text-3xl text-center">{{ title }}</h1>
     <form method="post"
-          action="{% url 'item:new' %}"
+          action="{% if pk %}{% url 'item:edit' pk %}{% else %}{% url 'item:new' %}{% endif %}"
           enctype="multipart/form-data">
       {% csrf_token %}
-      <div class="mb-3">
-        <label class="inline-block mb-2">Category</label>
-        <br>
-        {{ form.category }}
-      </div>
+      {% if form.category %}
+        <div class="mb-3">
+          <label class="inline-block mb-2">Category</label>
+          <br>
+          {{ form.category }}
+        </div>
+      {% endif %}
       <div class="mb-3">
         <label class="inline-block mb-2">Name</label>
         <br>
