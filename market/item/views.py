@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from utils.decorators import log_files
 
+from utils.decorators import log_files
+from utils.common import inject_image
 from .models import Item
 from .forms import NewItemForm
 
@@ -14,7 +15,7 @@ def detail(request, pk):
         category=item.category, is_sold=False).exclude(pk=pk)[0:3]
 
     return render(request, 'item/detail.html', {
-        'item': item,
+        'item': inject_image(item),
         'related_items': related_items
     })
 

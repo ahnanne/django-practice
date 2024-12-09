@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from utils.decorators import log_headers
 
+from utils.decorators import log_headers
+from utils.common import inject_image
 from item.models import Category, Item
 from .forms import SignupForm, LoginForm
 
@@ -13,7 +14,7 @@ def index(request):
 
     return render(request, 'core/index.html', {
         'categories': categories,
-        'items': items,
+        'items': list(map(inject_image, items)),
     })
 
 
