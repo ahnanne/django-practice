@@ -9,6 +9,14 @@ from .forms import NewItemForm, EditItemForm
 # Create your views here.
 
 
+def search(request):
+    items = Item.objects.filter(is_sold=False)
+
+    return render(request, 'item/search.html', {
+        'items': list(map(inject_image, items))
+    })
+
+
 def detail(request, pk):
     item = get_object_or_404(Item, pk=pk)
     related_items = Item.objects.filter(
