@@ -4,7 +4,19 @@
 {% endblock title %}
 {% block content %}
   <div class="pb-6 grid grid-cols-4 gap-4 bg-gray-100">
-    <div class="col-span-1">side bar</div>
+    <div class="col-span-1">
+      <div class="p-6">
+        <form action="{% url 'item:search' %}" method="get">
+          <input type="text"
+                 name="query"
+                 class="w-full mt-3 p-2 rounded-md border border-gray-300"
+                 placeholder="Search..."
+                 value="{{ query }}" />
+          <button type="submit"
+                  class="w-full mt-3 p-2 bg-teal-500 text-white rounded-md">Search</button>
+        </form>
+      </div>
+    </div>
     <div class="col-span-3">
       <div class="grid grid-cols-3 gap-3">
         {% for item in items %}

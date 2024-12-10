@@ -10,10 +10,15 @@ from .forms import NewItemForm, EditItemForm
 
 
 def search(request):
+    query = request.GET.get('query', '')
     items = Item.objects.filter(is_sold=False)
 
+    if query:
+        items = items.filter(name__icontains=query)
+
     return render(request, 'item/search.html', {
-        'items': list(map(inject_image, items))
+        'items': list(map(inject_image, items)),
+        'query': query
     })
 
 
