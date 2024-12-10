@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 
 from utils.decorators import log_files
 from utils.common import inject_image
-from .models import Item
+from .models import Item, Category
 from .forms import NewItemForm, EditItemForm
 
 # Create your views here.
@@ -11,14 +12,21 @@ from .forms import NewItemForm, EditItemForm
 
 def search(request):
     query = request.GET.get('query', '')
+    category_id = request.GET.get('category_id', '')
     items = Item.objects.filter(is_sold=False)
+    categories = Category.objects.all()
 
     if query:
-        items = items.filter(name__icontains=query)
+        items = items.filter(Q(name__icontains=query) |
+                             Q(description__icontains=query))
+    if category_id:
+        items = items.filter(category_id=category_id)
 
     return render(request, 'item/search.html', {
         'items': list(map(inject_image, items)),
-        'query': query
+        'query': query,
+        'categories': categories,
+        'category_id': int(category_id) if category_id else None
     })
 
 

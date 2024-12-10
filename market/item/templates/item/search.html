@@ -15,6 +15,15 @@
           <button type="submit"
                   class="w-full mt-3 p-2 bg-teal-500 text-white rounded-md">Search</button>
         </form>
+        <hr class="my-6" />
+        <p class="font-semibold">Categories</p>
+        <ul>
+          {% for category in categories %}
+            <li class="py-2 px-2 rounded-xl {% if category.id is category_id %}text-fuchsia-500 font-bold{% endif %}">
+              <a href="{% url 'item:search' %}?category_id={{ category.id }}&query={{ query }}">{{ category.name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
       </div>
     </div>
     <div class="col-span-3">
