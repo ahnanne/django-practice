@@ -72,3 +72,11 @@ def edit(request, pk):
         'title': 'Edit item',
         'pk': item.id
     })
+
+
+def category(request, category_id):
+    items = Item.objects.filter(category=category_id, is_sold=False)
+
+    return render(request, 'item/category.html', {
+        'items': list(map(inject_image, items))
+    })
