@@ -4,7 +4,14 @@
 {% endblock title %}
 {% block content %}
   <h1 class="mb-6 text-3xl">New Conversation</h1>
-  <form method="post" action=".">
+  <form method="post" action="{% url 'conversation:new' item.id %}">
     {% csrf_token %}
+    <div class="mb-3">
+      <label class="inline-block mb-2">Message</label>
+      <br>
+      {{ form.content }}
+    </div>
+    <button type="submit"
+            class="py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-md">Save</button>
   </form>
 {% endblock content %}

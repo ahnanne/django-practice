@@ -39,5 +39,6 @@ def new_conversation(request, item_pk):
         form = ConversationMessageForm()
 
     return render(request, 'conversation/new.html', {
-        'form': form
+        'form': form,
+        'item': item
     })
