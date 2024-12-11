@@ -26,7 +26,7 @@
         </ul>
         {% if request.user.is_authenticated %}
           <div class="flex justify-between">
-            <a href="#"
+            <a href="{% url 'conversation:inbox' %}"
                class="text-lg font-semibold px-6 py-3 bg-teal-500 text-white rounded-xl mr-3">Inbox</a>
             <a href="{% url 'dashboard:index' %}"
                class="text-lg font-semibold px-6 py-3 bg-teal-500 text-white rounded-xl">Dashboard</a>
