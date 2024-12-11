@@ -21,7 +21,7 @@
             <a href="{% url "item:new" %}" class="text-lg font-semibold">New item</a>
           </li>
           <li>
-            <a href="#" class="text-lg font-semibold">Browse</a>
+            <a href="{% url "item:search" %}" class="text-lg font-semibold">Browse</a>
           </li>
         </ul>
         {% if request.user.is_authenticated %}
