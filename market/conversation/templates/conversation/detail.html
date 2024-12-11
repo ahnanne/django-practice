@@ -4,5 +4,20 @@
 {% endblock title %}
 {% block content %}
   <h1 class="mb-6 text-3xl">Conversation</h1>
-  <div class="space-y-6"></div>
+  <div class="space-y-6">
+    <form method="post" action=".">
+      {% csrf_token %}
+      <div class="space-y-4">{{ form.as_p }}</div>
+      <button type="submit"
+              class="mt-6 inline-block py-4 px-6 rounded-xl text-white bg-purple-500 hover:bg-purple-700">Send</button>
+    </form>
+    {% for message in conversation.messages.all %}
+      <div class="p-6 rounded-xl {% if message.created_by == request.user %}bg-blue-100{% else %}bg-gray-100{% endif %}">
+        <p class="mb-4">
+          <strong>{{ message.created_by.username }}</strong> @{{ message.created_at }}
+        </p>
+        <p>{{ message.content }}</p>
+      </div>
+    {% endfor %}
+  </div>
 {% endblock content %}

@@ -20,19 +20,19 @@ def new_conversation(request, item_pk):
         item=item).filter(members__in=[request.user.id])
 
     if conversations:
-        pass  # redirect to conversation
+        return redirect('conversation:detail', conversation_pk=conversations.first().id)
 
     if request.method == 'POST':
         form = ConversationMessageForm(request.POST)
 
         if form.is_valid():
-            converversation = Conversation.objects.create(item=item)
-            converversation.members.add(request.user)
-            converversation.members.add(item.created_by)
-            converversation.save()
+            conversation = Conversation.objects.create(item=item)
+            conversation.members.add(request.user)
+            conversation.members.add(item.created_by)
+            conversation.save()
 
             conversation_message = form.save(commit=False)
-            conversation_message.conversation = converversation
+            conversation_message.conversation = conversation
             conversation_message.created_by = request.user
             conversation_message.save()
 
@@ -60,6 +60,20 @@ def detail(request, conversation_pk):
     conversation = Conversation.objects.filter(
         members__in=[request.user.id]).get(pk=conversation_pk)
 
+    if request.method == 'POST':
+        form = ConversationMessageForm(request.POST)
+
+        if form.is_valid():
+            conversation_message = form.save(commit=False)
+            conversation_message.conversation = conversation
+            conversation_message.created_by = request.user
+            conversation_message.save()
+
+            return redirect('conversation:detail', conversation_pk=conversation_pk)
+    else:
+        form = ConversationMessageForm()
+
     return render(request, 'conversation/detail.html', {
-        'conversation': conversation
+        'conversation': conversation,
+        'form': form,
     })
